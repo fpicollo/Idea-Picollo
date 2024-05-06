@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/estilo.css">
+	<title>Casapel</title>
+</head>
+<body>
+	<header>
+		
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<div class="container">
+				<a href="#" class="navbar-brand">Casapel</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menuNavegacion" aria-controls="menuNavegacion" aria-expanded="false" aria-label="Alternar Menu">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			
+		</nav>
+
+	</header>
+
+
+	<main class="container">
+		<div class="row">
+			<div class="col">
+				<div class="carousel slide" id="slideshow" data-ride="carousel">
+					
+					<ol class="carousel-indicators">
+						<li data-target="#slideshow" class="active" data-slide-to="0"></li>
+						<li data-target="#slideshow" data-slide-to="1"></li>
+						<li data-target="#slideshow" data-slide-to="2"></li>
+					</ol>
+
+					
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="img/bandeja30x30.jpg" alt="" class="d-block w-100">
+						</div>
+						<div class="carousel-item">
+							<img src="img/caja-desayuno-blanca-25x25x12cm.jpg" alt="" class="d-block w-100">
+						</div>
+						<div class="carousel-item">
+							<img src="img/Caja_Torta.jpg" alt="" class="d-block w-100">
+						</div>
+					</div>
+
+					
+					<a href="#slideshow" class="carousel-control-prev" data-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="sr-only">Anterior</span>
+					</a>
+					<a href="#slideshow" class="carousel-control-next" data-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="sr-only">Siguiente</span>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-12">
+				<div class="py-4 border-bottom">
+					<h1 class="text-center">Productos</h1>
+				</div>
+			</div>
+		</div>	
+
+<input id="inputBusqueda" placeholder="Buscar por nombre">
+<button id="botonBuscar" >BUSCAR</button>
+
+<button class="botonFiltro" value="">Todos</button>
+<button class="botonFiltro" value="desayuno">Desayuno</button>
+<button class="botonFiltro" value="bandeja">Bandeja</button>
+<button class="botonFiltro" value="tortas">Torta</button>
+
+<button id="botonVerOcultar">VER CARRITO</button>
+
+<div class="grid-container"id="contenedorProductos"></div>
+<div class="oculto" id="contenedorCarrito"></div>
+
+<button id="botonComprar">COMPRAR</button>
+
+	</main> 
+
+	<footer class="container">
+		<div class="row border-top py-5">
+			<div class="col">
+				<h3 class="lead">Gracias!</h3>
+				<a href="#" class="btn btn-link">Acerca de</a>
+				<a href="#" class="btn btn-link">Contacto</a>
+			</div>
+			<div class="col text-right">
+				<a href="#" class="btn btn-link">Subir</a>
+			</div>
+		</div>
+	</footer>
+
+	<script src="./script.js"></script>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/popper.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,18 +1,13 @@
-let listaProductos = [
-{ id: 1, nombre: "25x25x12 Desayuno", categoria: "desayuno", stock: 250, precio: 1000, rutaImagen: "caja-desayuno-blanca-25x25x12cm.jpg" },
-{ id: 2, nombre: "30x30x12 Desayuno", categoria: "desayuno", stock: 250, precio: 1300, rutaImagen: "caja_para_desayuno_con_visor_30x30x12_2_.jpg" },
-{ id: 3, nombre: "30x30x7 Bandeja Desayuno", categoria: "bandeja", stock: 250, precio: 1500, rutaImagen: "bandeja30x30.jpg" },
-{ id: 4, nombre: "43x33x12 Desayuno", categoria: "desayuno", stock: 250, precio: 1700, rutaImagen: "caja_para_desayuno_con_visor_42x33x12.jpg" },
-{ id: 5, nombre: "25x25x7 Bandeja Motivos", categoria: "bandeja", stock: 250, precio: 1800, rutaImagen: "Bandeja_motivos.jpg" },
-{ id: 6, nombre: "30x30x16 Torta", categoria: "tortas", stock: 100, precio: 1000, rutaImagen: "003-Caja-Torta-Blanca-Grande.jpg" },
-{ id: 7, nombre: "35x35x16 Torta", categoria: "tortas", stock: 100, precio: 1500, rutaImagen: "Caja_Torta.jpg" }
-]
+
 
 const obtenerCarritoLS = () => JSON.parse(localStorage.getItem("carrito")) || []
 
-principal(listaProductos)
+principal()
 
-function principal(productos) {
+async function principal() {
+
+        const response = await fetch("./data.json")
+        const productos = await response.json()
 renderizarCarrito()
 
 let botonBuscar = document.getElementById("botonBuscar")
@@ -53,8 +48,10 @@ e.target.innerText = e?.target?.innerText === "VER CARRITO" ? "VER PRODUCTOS" : 
 }
 
 function finalizarCompra() {
-localStorage.removeItem("carrito")
-renderizarCarrito([])
+    lanzarAlerta("Gracias por su compra", "", "success", 5000)
+
+    localStorage.removeItem("carrito")
+    renderizarCarrito([])
 }
 
 function filtrarYRenderizarEnter(productos, e) {
@@ -101,9 +98,14 @@ let idDelProducto = Number(e.target.id.substring(12))
 let posProductoEnCarrito = carrito.findIndex(producto => producto.id === idDelProducto)
 let productoBuscado = productos.find(producto => producto.id === idDelProducto)
 
+
+
+lanzarTostada("Producto agregado", "top", "left", 1000)
+
 if (posProductoEnCarrito !== -1) {
     carrito[posProductoEnCarrito].unidades++
     carrito[posProductoEnCarrito].subtotal = carrito[posProductoEnCarrito].precioUnitario * carrito[posProductoEnCarrito].unidades
+    
 } else {
     carrito.push({
         id: productoBuscado.id,
@@ -120,8 +122,10 @@ renderizarCarrito()
 
 function renderizarCarrito() {
 let carrito = obtenerCarritoLS()
-let contenedorCarrito = document.getElementById("contenedorCarrito")
-contenedorCarrito.innerHTML = ""
+let contenedorCarrito = document.getElementById("contenedorCarrito");
+
+contenedorCarrito.innerHTML = "";
+let total = 0;
 carrito.forEach(producto => {
     let tarjetaProductoCarrito = document.createElement("div")
     tarjetaProductoCarrito.className = "tarjetaProductoCarrito"
@@ -148,9 +152,9 @@ carrito.forEach(producto => {
     let botonEliminar = document.getElementById("eliminar" + producto.id)
     botonEliminar.addEventListener("click", eliminarProductoDelCarrito)
 
-    
+    total += producto.subtotal;
 })
-    
+    document.getElementById('totalCarrito').textContent = `Total: $${total.toFixed(2)}`; 
 }
 
 function decrementarUnidad(e) {
@@ -159,11 +163,17 @@ function decrementarUnidad(e) {
     let posProdEnCarrito = carrito.findIndex(producto => producto.id === id);
   
     if (carrito[posProdEnCarrito].unidades > 0) {
+        lanzarTostada("Ha sacado un producto", "top", "left", 1000)
       carrito[posProdEnCarrito].unidades--;
       carrito[posProdEnCarrito].subtotal = carrito[posProdEnCarrito].unidades * carrito[posProdEnCarrito].precioUnitario;
       localStorage.setItem("carrito", JSON.stringify(carrito));
       renderizarCarrito();
     }
+    else {
+        lanzarTostada("No se puede", "top", "left", 1000)
+    }
+    
+    
   }
 
 function incrementarUnidad(e) {
@@ -172,6 +182,7 @@ function incrementarUnidad(e) {
     let posProdEnCarrito = carrito.findIndex(producto => producto.id === id)
     
     carrito[posProdEnCarrito].unidades++
+    lanzarTostada("Producto agregado", "top", "left", 1000)
     carrito[posProdEnCarrito].subtotal = carrito[posProdEnCarrito].unidades * carrito[posProdEnCarrito].precioUnitario 
     localStorage.setItem("carrito", JSON.stringify(carrito))
     renderizarCarrito()
@@ -181,6 +192,7 @@ function incrementarUnidad(e) {
     
 
 function eliminarProductoDelCarrito(e) {
+    lanzarTostada("Producto eliminado", "top", "left", 1000)
 let carrito = obtenerCarritoLS()
 let id = Number(e.target.id.substring(8))
 carrito = carrito.filter(producto => producto.id !== id)
@@ -188,3 +200,39 @@ localStorage.setItem("carrito", JSON.stringify(carrito))
 e.target.parentElement.remove()
 }
 
+function lanzarAlerta(title, text, icon, timer) {
+    Swal.fire({
+        title, 
+        text,
+        icon: icon,
+        showConfirmButton: true,
+        timer: timer
+    })
+}
+
+function lanzarTostada(text, gravity, position, duration) {
+    Toastify({
+        text,
+        gravity,
+        position,
+        duration, 
+        close: true,
+        className: "tostada",
+        backgroundColor: "black",
+        style: {
+            fontSize: "large",
+            background: "black"
+        },        
+    }).showToast();
+}
+
+async function pedirInfo() {
+    try {
+        const response = await fetch("./data.json")
+        const productos = await response.json()
+        return productos
+    } catch (error) {
+        console.log("ALGO SALIÓ MAL")
+    }
+
+}

@@ -71,3 +71,7 @@ img {
 .oculto {
     display: none !important;
 }
+
+.tostada {
+    font-size: small;
+}

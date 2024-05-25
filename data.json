@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nombre": "25x25x12 Desayuno",
+    "categoria": "desayuno",
+    "stock": 250,
+    "precio": 1000,
+    "rutaImagen": "caja-desayuno-blanca-25x25x12cm.jpg"
+  },
+  {
+    "id": 2,
+    "nombre": "30x30x12 Desayuno",
+    "categoria": "desayuno",
+    "stock": 250,
+    "precio": 1300,
+    "rutaImagen": "caja_para_desayuno_con_visor_30x30x12_2_.jpg"
+  },
+  {
+    "id": 3,
+    "nombre": "30x30x7 Bandeja Desayuno",
+    "categoria": "bandeja",
+    "stock": 250,
+    "precio": 1500,
+    "rutaImagen": "bandeja30x30.jpg"
+  },
+  {
+    "id": 4,
+    "nombre": "43x33x12 Desayuno",
+    "categoria": "desayuno",
+    "stock": 250,
+    "precio": 1700,
+    "rutaImagen": "caja_para_desayuno_con_visor_42x33x12.jpg"
+  },
+  {
+    "id": 5,
+    "nombre": "25x25x7 Bandeja Motivos",
+    "categoria": "bandeja",
+    "stock": 250,
+    "precio": 1800,
+    "rutaImagen": "Bandeja_motivos.jpg"
+  },
+  {
+    "id": 6,
+    "nombre": "30x30x16 Torta",
+    "categoria": "tortas",
+    "stock": 100,
+    "precio": 1000,
+    "rutaImagen": "003-Caja-Torta-Blanca-Grande.jpg"
+  },
+  {
+    "id": 7,
+    "nombre": "35x35x16 Torta",
+    "categoria": "tortas",
+    "stock": 100,
+    "precio": 1500,
+    "rutaImagen": "Caja_Torta.jpg"
+  }
+]

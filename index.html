@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 	<link rel="stylesheet" href="./css/estilo.css">
 	<title>Casapel</title>
 </head>
@@ -67,7 +68,7 @@
 				</div>
 			</div>
 		</div>	
-
+<body>
 <input id="inputBusqueda" placeholder="Buscar por nombre">
 <button id="botonBuscar" >BUSCAR</button>
 
@@ -82,6 +83,7 @@
 <div class="oculto" id="contenedorCarrito"></div>
 
 <button id="botonComprar">COMPRAR</button>
+<div id="totalCarrito">Total:{total}</div>
 
 	</main> 
 
@@ -98,6 +100,8 @@
 		</div>
 	</footer>
 
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="./script.js"></script>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="js/popper.min.js"></script>
